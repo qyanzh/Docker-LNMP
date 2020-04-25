@@ -1,0 +1,5 @@
+FROM nginx
+LABEL author="qyanzh"
+COPY default.conf /etc/nginx/conf.d/
+COPY my_web_dir/index.html /usr/share/my_web/html/index.html
+EXPOSE 2420

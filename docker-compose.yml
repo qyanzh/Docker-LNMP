@@ -1,0 +1,31 @@
+version: "3"
+services:
+  php:
+    image: "my-php"
+    container_name: cphp
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    environment:
+      MYSQL_PASSWORD: 1234
+
+  nginx:
+    image: "my-nginx"
+    container_name: cngx
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - "80:2420"
+
+  mariadb:
+    image: mariadb
+    container_name: cdb
+    restart: always
+    volumes:
+      - mariadb-data:/bitnami/mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+
+volumes: 
+  mariadb-data:
