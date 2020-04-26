@@ -1,6 +1,6 @@
 <?php
 $dbms = 'mysql';     //数据库类型
-$host = 'cdb'; //数据库主机名
+$host = 'cdb';       //数据库主机名，修改为容器名
 $user = 'root';      //数据库连接用户名
 $pass = $_ENV["MYSQL_PASSWORD"]; //通过yml中定义的环境变量获得对应的密码
 $dsn = "$dbms:host=$host;";

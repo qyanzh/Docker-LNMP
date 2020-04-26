@@ -39,6 +39,19 @@ services:
     networks: 
       - back_end
 
+  phpmyadmin:
+    image: my-phpmyadmin
+    container_name: cadm
+    build: 
+      context: .
+      dockerfile: Dockerfile-phpmyadmin
+    ports: 
+      - "8080:80"
+    environment:
+      PMA_HOST: cdb
+    networks: 
+      - back_end
+
 volumes: 
   mariadb-data:
 
