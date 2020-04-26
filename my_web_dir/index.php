@@ -1,6 +1,6 @@
 <?php
 $dbms = 'mysql';     //数据库类型
-$host = '172.20.0.2'; //数据库主机名
+$host = '172.20.0.4'; //数据库主机名
 $user = 'root';      //数据库连接用户名
 $pass = $_ENV["MYSQL_PASSWORD"]; //通过yml中定义的环境变量获得对应的密码
 $dsn = "$dbms:host=$host;";
@@ -14,9 +14,9 @@ try {
 }
 //默认这个不是长连接，如果需要数据库长连接，需要最后加一个参数：array(PDO::ATTR_PERSISTENT => true) 变成这样：
 $db = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-$db->exec("create database test_db if not exists;");
+$db->exec("database if not exists test_db;");
 $db->exec("use test_db;");
-$db->exec("create table t(num integer) if not exists;");
+$db->exec("create table  if not exists t(num integer);");
 $db->exec("delete from t;");
 
 // 增
