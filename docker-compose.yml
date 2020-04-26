@@ -1,22 +1,27 @@
 version: "3"
 services:
   php:
-    image: "my-php"
+    image: my-php
     container_name: cphp
     build:
       context: .
       dockerfile: Dockerfile-php
     environment:
       MYSQL_PASSWORD: 1234
+    volumes: 
+      - ./my_web_dir:/usr/share/my_web/php
 
   nginx:
-    image: "my-nginx"
+    image: my-nginx
     container_name: cngx
     build:
       context: .
       dockerfile: Dockerfile-nginx
     ports:
       - "80:2420"
+    volumes: 
+      - ./my_web_dir:/usr/share/my_web/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
 
   mariadb:
     image: mariadb

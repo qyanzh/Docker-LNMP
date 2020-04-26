@@ -1,6 +1,6 @@
 <?php
 $dbms = 'mysql';     //数据库类型
-$host = '172.20.0.4'; //数据库主机名
+$host = 'cdb'; //数据库主机名
 $user = 'root';      //数据库连接用户名
 $pass = $_ENV["MYSQL_PASSWORD"]; //通过yml中定义的环境变量获得对应的密码
 $dsn = "$dbms:host=$host;";
@@ -16,7 +16,7 @@ try {
 $db = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
 $db->exec("database if not exists test_db;");
 $db->exec("use test_db;");
-$db->exec("create table  if not exists t(num integer);");
+$db->exec("create table if not exists t(num integer);");
 $db->exec("delete from t;");
 
 // 增
