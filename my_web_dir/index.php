@@ -14,7 +14,7 @@ try {
 }
 //默认这个不是长连接，如果需要数据库长连接，需要最后加一个参数：array(PDO::ATTR_PERSISTENT => true) 变成这样：
 $db = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-$db->exec("database if not exists test_db;");
+$db->exec("create database if not exists test_db;");
 $db->exec("use test_db;");
 $db->exec("create table if not exists t(num integer);");
 $db->exec("delete from t;");

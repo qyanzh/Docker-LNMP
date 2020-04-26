@@ -10,6 +10,9 @@ services:
       MYSQL_PASSWORD: 1234
     volumes: 
       - ./my_web_dir:/usr/share/my_web/php
+    networks: 
+      - front_end
+      - back_end
 
   nginx:
     image: my-nginx
@@ -22,6 +25,8 @@ services:
     volumes: 
       - ./my_web_dir:/usr/share/my_web/html
       - ./default.conf:/etc/nginx/conf.d/default.conf
+    networks: 
+      - front_end
 
   mariadb:
     image: mariadb
@@ -31,6 +36,12 @@ services:
       - mariadb-data:/bitnami/mariadb
     environment:
       MYSQL_ROOT_PASSWORD: 1234
+    networks: 
+      - back_end
 
 volumes: 
   mariadb-data:
+
+networks:
+  front_end:
+  back_end:
